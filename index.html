@@ -96,6 +96,8 @@ main:has(>.hero){padding-top:12px}
 main:has(>.hero)>.grid{grid-template-columns:repeat(3,minmax(0,1fr))}
 
 #modal img{cursor:zoom-out}
+
+.cover-name-question{display:block;width:100%;background:transparent;color:#ffe4ad;text-align:left;font-size:32px;font-weight:800;letter-spacing:.12em;padding:15px 3px 8px;min-height:60px}.cover-name-question:hover{color:#fff6df}.cover-preview{cursor:default}
 </style></head><body><header><button class="brand" onclick="home()">ROAD ON <span>생활 모습 변화 탐정단</span></button><nav><button class="btn quiet" onclick="back()">← 뒤로</button><button class="btn quiet" onclick="home()">처음으로</button><button class="btn" onclick="compare()">함께 비교하기</button><button class="btn" onclick="teacher()">교사용</button></nav></header><main id="app"></main><footer>옛날 교통수단 탐구하기 · 자료를 살펴보고, 근거를 찾아 이야기해요.</footer><dialog id="modal"></dialog>
 <script src="data.js?v=20261106-raft-video-photo-toggle"></script><script>
 const names=['가마','말','달구지','당나귀','뗏목','나룻배'];
@@ -113,10 +115,11 @@ function home(){if(typeof classroomPauseInlineVideos==='function')classroomPause
 const coverSilhouettes={"0":"가마","1":"말","2":"달구지","3":"당나귀","4":"뗏목","5":"나룻배"};
 function coverArt(i){const n=coverSilhouettes[i];return n?'<div class="art silhouette-art"><img src="assets/silhouettes/'+n+'.png" alt="'+esc(n)+' 실루엣" loading="lazy"></div>':art(i)}
 function coverCredit(i){return coverSilhouettes[i]?'<div class="source-credit"><p>AI 이미지 생성 도구로 새로 만든 표지 그림<br>실제 역사 자료가 아닙니다. 원본 자료는 탐구 공간에서 확인하세요.</p></div>':representativeCredits(i)}
-const coverRevealed=Array(6).fill(false);
+const coverRevealed=Array(6).fill(false),coverNamesRevealed=Array(6).fill(false);
 const coverNumbers=[2,1,3,4,5,6];
 function revealCover(i){if(!Number.isInteger(i)||i<0||i>=names.length)return;coverRevealed[i]=true;render();}
-function card(i,fn='explore'){if(fn==='explore'&&!coverRevealed[i])return '<button class="card mystery-card" onclick="revealCover('+i+')" aria-label="'+coverNumbers[i]+'번 카드 공개"><span class="cover-number">'+coverNumbers[i]+'</span></button>';return revealedCard(i,fn);}
+function card(i,fn='explore'){if(fn==='explore'&&!coverRevealed[i])return '<button class="card mystery-card" onclick="revealCover('+i+')" aria-label="'+coverNumbers[i]+'번 카드 공개"><span class="cover-number">'+coverNumbers[i]+'</span></button>';if(fn==='explore'&&!coverNamesRevealed[i])return '<article class="card cover-preview">'+coverArt(i).replace(/alt="[^"]*"/,'alt="교통수단 실루엣"')+'<button class="cover-name-question" onclick="revealCoverName('+i+')" aria-label="교통수단 이름 공개">'+'?'.repeat(Array.from(names[i]).length)+'</button></article>';return revealedCard(i,fn);}
+function revealCoverName(i){if(!Number.isInteger(i)||i<0||i>=names.length)return;coverNamesRevealed[i]=true;render();}
 function revealedCard(i,fn='explore'){return `<button class="card ${fn==='choose'&&selected.includes(i)?'selected':''}" onclick="${fn}(${i})" ${fn==='choose'?`aria-pressed="${selected.includes(i)}"`:''}>${fn==='explore'?coverArt(i):art(i)}<div class="card-title">${names[i]} <span>↗</span></div><div class="tag">${fn==='choose'?'특징 나란히 비교하기':'모습과 이용 방법 탐구하기'}</div></button>`}
 function render(){if(route==='home'){app.innerHTML=`<section class="hero"><h1 class="app-title">ROAD ON 생활 모습 변화 탐정단</h1><h2 class="lesson-title">옛날 교통수단 탐구하기</h2><p class="sub">옛날 사람들은 어떻게 이동하고 짐을 옮겼을까요? 여러 자료를 살펴보며 알아봅시다.</p><div class="step"><span>01 교통수단 고르기</span><span>02 자료에서 단서 찾기</span><span>03 서로 비교하기</span></div></section><div class="grid">${[1,2,4,0,3,5].map(i=>visible[i]?card(i):'').join('')}</div>${visible.every(v=>!v)?'<div class="empty">교사용 설정에서 탐구할 교통수단을 선택해 주세요.</div>':''}<div class="bottom"><div><h3>다른 모둠은 무엇을 알아냈을까요?</h3><div class="sub">비슷한 점과 다른 점을 찾아 함께 이야기해요.</div></div><button class="btn primary" onclick="compare()">함께 비교하기 →</button></div><details class="panel"><summary>첫 화면 사진·그림 출처 보기</summary><div class="cover-credits">${names.map((n,i)=>visible[i]?'<section><h3>'+n+'</h3>'+coverCredit(i)+'</section>':'').join('')}</div></details>`}
 if(route==='intro')renderTransportIntro();if(route==='explore')renderExplore();

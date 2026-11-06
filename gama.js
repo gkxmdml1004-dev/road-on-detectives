@@ -220,7 +220,9 @@ function gamaToggleHints(){gamaHintsOpen=!gamaHintsOpen;document.querySelector('
 
 function quizOptionNumber(i){return '<span class="quiz-choice-number">'+(['①','②','③','④','⑤','⑥'][i]||String(i+1)+'.')+'</span>'; }
 
-function showExplorationComplete(name,facts){modal.innerHTML='<section class="gama-popup gama-popup--success exploration-complete"><span class="gama-popup-badge">✓ 탐구 완료</span><h2>'+esc(name)+' 탐구를 마쳤어요!</h2><p>핵심 낱말로 모은 특징을 확인해 봅시다.</p><ul class="completion-facts">'+facts.map(f=>'<li>'+esc(f)+'</li>').join('')+'</ul><p class="completion-discussion">새롭게 알게 된 것을 친구와 이야기 나눠봅시다.</p><div class="controls"><button class="btn" onclick="modal.close()">정리한 내용 다시 보기</button><button class="btn primary" onclick="modal.close();home()">다른 교통수단 탐구하기 →</button></div></section>';if(!modal.open)modal.showModal();}
+function showExplorationComplete(name,facts){modal.innerHTML='<section class="gama-popup gama-popup--success exploration-complete"><span class="gama-popup-badge">✓ 탐구 완료</span><h2>'+esc(name)+' 탐구를 마쳤어요!</h2><ul class="completion-facts">'+facts.map(f=>'<li>'+esc(f)+'</li>').join('')+'</ul><p class="completion-discussion">새롭게 알게 된 것을 친구와 이야기 나눠봅시다.</p><section class="completion-thinking"><strong>생각해 볼 질문</strong><p>오늘날의 교통수단과 비슷한 것이 있는지 떠올려봅시다.</p></section><p class="completion-compare">오늘 탐구해 본 교통수단과 가장 비슷한 특징을 가진 것으로 보이는 교통수단과 비교해 봅시다.</p><div class="controls"><button class="btn" onclick="modal.close()">정리한 내용 다시 보기</button><button class="btn primary" onclick="finishToComparison()">비교 탐구하기 →</button></div></section>';if(!modal.open)modal.showModal();}
+function finishToComparison(){selected=[current];modal.close();compare();}
+
 
 function gamaMissingRequired(){return (gamaRequired[activeSource]||[]).filter(i=>!gamaCollected.includes(i));}
 function gamaShowMissing(){const missing=gamaMissingRequired();modal.innerHTML='<section class="gama-popup gama-popup--question"><span class="gama-popup-badge">중요한 단서</span><h2>이 내용도 찾아봅시다.</h2><ul>'+missing.map(i=>'<li>'+esc(gamaCluePrompts[i])+'</li>').join('')+'</ul><button class="btn primary" onclick="gamaReturnToRequired()">자료에서 단서 찾기 →</button></section>';if(!modal.open)modal.showModal();}

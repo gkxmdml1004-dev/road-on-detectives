@@ -91,9 +91,9 @@ window.CLASSROOM_VIDEOS = {
   }
 };
 function classroomVideoCredits(v){return '<p class="gama-artifact-credit classroom-video-credit">출처: '+esc(v.provider)+'<br>'+esc(v.date)+'<br>'+esc(v.kind)+'<br><a href="'+safe(v.url||v.file)+'" target="_blank" rel="noopener">'+(v.url?'공식 원본 정보':'원본 영상 파일')+' ↗</a></p>';}
-function classroomVideoElement(v){return '<video controls playsinline preload="none" poster="'+safe(v.poster)+'" src="'+safe(v.file+'#t='+v.start+','+v.end)+'" onloadedmetadata="this.currentTime='+v.start+'" ontimeupdate="if(this.currentTime>='+v.end+')this.pause()" style="width:100%;max-height:450px"></video><p class="gama-artifact-credit">발췌: '+v.start+'~'+v.end+'초 · 눌러서 재생</p>';}
+function classroomVideoElement(v){return '<video controls playsinline preload="none" poster="'+safe(v.poster)+'" src="'+safe(v.file)+'" style="width:100%;max-height:450px"></video>';}
 function classroomVideoMain(id){const v=window.CLASSROOM_VIDEOS[id];return '<figure class="classroom-video-main">'+classroomVideoElement(v)+classroomVideoCredits(v)+'</figure>';}
-function classroomVideoCard(id){const v=window.CLASSROOM_VIDEOS[id];return '<section class="classroom-video-card"><span class="source-type">영상</span><h3>'+esc(v.title)+'</h3><p>'+esc(v.prompt)+'</p><button class="btn" onclick="classroomOpenVideo(\''+id+'\')">짧은 영상 보기 ▶</button>'+classroomVideoCredits(v)+'</section>';}
+function classroomVideoCard(id){const v=window.CLASSROOM_VIDEOS[id];return '<section class="classroom-video-card"><span class="source-type">영상</span><h3>'+esc(v.title)+'</h3><p>'+esc(v.prompt)+'</p>'+classroomVideoElement(v)+classroomVideoCredits(v)+'</section>';}
 function classroomOpenVideo(id){const v=window.CLASSROOM_VIDEOS[id];modal.innerHTML='<section class="gama-popup"><button class="btn" onclick="classroomCloseVideo()">닫기 ×</button><h2>'+esc(v.title)+'</h2>'+classroomVideoElement(v)+classroomVideoCredits(v)+'</section>';if(!modal.open)modal.showModal();}
 function classroomCloseVideo(){const video=modal.querySelector?.('video');if(video)video.pause();modal.close();}
 function classroomPauseInlineVideos(){document.querySelectorAll('video').forEach(v=>v.pause());}

@@ -102,7 +102,7 @@ main:has(>.hero)>.grid{grid-template-columns:repeat(3,minmax(0,1fr))}
 .hidden-picture-lesson{height:calc(100dvh - 150px);display:flex;flex-direction:column;gap:10px}.hidden-picture-lesson>.controls{margin:0}.hidden-picture-stage{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;background:#000;overflow:hidden;cursor:pointer}.hidden-picture-frame{position:relative;aspect-ratio:1448/1086;max-width:100%;max-height:100%;height:100%}.hidden-picture-frame>img{display:block;width:100%;height:100%;object-fit:contain}.hidden-picture-crop{width:100%;height:100%;background-image:url('assets/teacher-hidden-picture.png');background-size:auto 550%;background-position:100% 74%;background-repeat:no-repeat}.hidden-picture-target{position:absolute;border:0;background:transparent;border-radius:50%;cursor:pointer;padding:0}.hidden-picture-target.found{border:5px solid #e52626}.hidden-picture-target span{position:absolute;bottom:calc(100% + 5px);left:50%;transform:translateX(-50%);white-space:nowrap;background:#fff8e6;color:#b61c1c;font-weight:900;font-size:clamp(20px,3vw,36px);padding:3px 12px;border-radius:6px}.hidden-picture-target:focus-visible{outline:3px dashed #edb43f}
 body:has(.hidden-picture-lesson)>footer{display:none}main:has(.hidden-picture-lesson){height:calc(100dvh - 125px);padding-top:12px;padding-bottom:12px}.hidden-picture-lesson{height:100%}.hidden-picture-frame{height:calc(100% - 48px);margin-top:48px}
 body:has(.hidden-picture-lesson){overflow:hidden}body:has(.hidden-picture-lesson)>header,body:has(.hidden-picture-lesson)>footer{display:none}main:has(.hidden-picture-lesson){position:fixed;inset:0;width:100vw;max-width:none;height:100dvh;padding:0;margin:0;z-index:10;background:#000}.hidden-picture-lesson{height:100dvh;position:relative;gap:0}.hidden-picture-lesson>.controls{position:absolute;left:8px;top:8px;z-index:5;display:flex;gap:6px;opacity:.88}.hidden-picture-lesson>.controls .btn{font-size:13px;min-height:30px;padding:5px 9px;border-radius:7px;background:#2e2419e8}.hidden-picture-stage{width:100%;height:100%;flex:1}.hidden-picture-frame{height:auto;width:min(100vw,calc(100dvh * 1448 / 1086));max-width:100%;max-height:100%;margin:0;aspect-ratio:1448/1086}.hidden-picture-frame>img{width:100%;height:auto}.hidden-picture-target span{font-size:clamp(18px,2.4vw,34px)}.hidden-picture-target:nth-of-type(2) span{bottom:auto;top:calc(100% + 4px)}
-.black-screen-question{color:#fff8e6;font-size:clamp(30px,4.8vw,76px);font-weight:800;line-height:1.5;text-align:center;margin:0;padding:32px;word-break:keep-all;pointer-events:none}#blankScreen{position:fixed;inset:0;z-index:10000;background:#000}#blankScreen[hidden]{display:none}#blankScreen>.btn{position:absolute;top:10px;right:10px;font-size:14px;min-height:32px;padding:6px 12px;background:#252525;color:#eee;border:1px solid #777;border-radius:7px}.blank-screen-actions{position:absolute;top:10px;right:10px;display:flex;gap:7px}.blank-screen-actions .btn{font-size:14px;min-height:32px;padding:6px 12px;background:#252525;color:#eee;border:1px solid #777;border-radius:7px}.edition-brand{display:flex;align-items:center;gap:7px}.edition-button{flex:none;width:36px;height:36px;border:1px solid #b79760;border-radius:50%;background:#342616;color:#ffe1a3;font:inherit;font-weight:800;cursor:pointer}.edition-button[aria-current=true]{background:#e5c37e;color:#24180d}.modern-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px}.modern-cards .panel{margin:0}.modern-cards ol{min-height:6em;line-height:1.8}</style></head><body><header><div class="edition-brand"><button class="brand" onclick="home()">ROAD ON <span>생활 모습 변화 탐정단</span></button><button id="editionOne" class="edition-button" aria-label="1 옛날 교통수단 탐구" onclick="home()">1</button><button id="editionTwo" class="edition-button" aria-label="2 과학 기술이 발달하면서 생겨난 교통수단" onclick="openModernPin()">2</button></div><nav><button class="btn quiet" onclick="back()">← 뒤로</button><button class="btn quiet" onclick="home()">처음으로</button><button class="btn" onclick="compare()">함께 비교하기</button><button class="btn" onclick="teacher()">교사용</button><button class="btn" onclick="practice()">연습</button><button class="btn" onclick="openBlankScreen()">검은 화면</button></nav></header><main id="app"></main><footer>옛날 교통수단 탐구하기 · 자료를 살펴보고, 근거를 찾아 이야기해요.</footer><dialog id="modal"></dialog>
+.black-screen-question{color:#fff8e6;font-size:clamp(30px,4.8vw,76px);font-weight:800;line-height:1.5;text-align:center;margin:0;padding:32px;word-break:keep-all;pointer-events:none}#blankScreen{position:fixed;inset:0;z-index:10000;background:#000}#blankScreen[hidden]{display:none}#blankScreen>.btn{position:absolute;top:10px;right:10px;font-size:14px;min-height:32px;padding:6px 12px;background:#252525;color:#eee;border:1px solid #777;border-radius:7px}.blank-screen-actions{position:absolute;top:10px;right:10px;display:flex;gap:7px}.blank-screen-actions .btn{font-size:14px;min-height:32px;padding:6px 12px;background:#252525;color:#eee;border:1px solid #777;border-radius:7px}.edition-brand{display:flex;align-items:center;gap:7px}.edition-button{flex:none;width:36px;height:36px;border:1px solid #b79760;border-radius:50%;background:#342616;color:#ffe1a3;font:inherit;font-weight:800;cursor:pointer}.edition-button[aria-current=true]{background:#e5c37e;color:#24180d}.modern-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px}.modern-cards .panel{margin:0}.modern-cards ol{min-height:6em;line-height:1.8}.steam-puzzle{width:min(100%,460px);aspect-ratio:4/3;margin:12px auto;display:grid;grid-template-rows:repeat(3,1fr);background:#241b11}.steam-puzzle>div{background-size:100% 300%;border:1px solid #96774d}</style></head><body><header><div class="edition-brand"><button class="brand" onclick="home()">ROAD ON <span>생활 모습 변화 탐정단</span></button><button id="editionOne" class="edition-button" aria-label="1 옛날 교통수단 탐구" onclick="home()">1</button><button id="editionTwo" class="edition-button" aria-label="2 과학 기술이 발달하면서 생겨난 교통수단" onclick="openModernPin()">2</button></div><nav><button class="btn quiet" onclick="back()">← 뒤로</button><button class="btn quiet" onclick="home()">처음으로</button><button class="btn" onclick="compare()">함께 비교하기</button><button class="btn" onclick="teacher()">교사용</button><button class="btn" onclick="practice()">연습</button><button class="btn" onclick="openBlankScreen()">검은 화면</button></nav></header><main id="app"></main><footer>옛날 교통수단 탐구하기 · 자료를 살펴보고, 근거를 찾아 이야기해요.</footer><dialog id="modal"></dialog>
 <script src="data.js?v=20261106-raft-video-photo-toggle"></script><script>
 const names=['가마','말','달구지','당나귀','뗏목','나룻배'];
 const shapes=[`<path d="M35 60H205M45 108H195"/><path d="M85 52V115H155V52Z" fill="#d6ad6c"/><path d="M76 52L120 30L164 52Z" fill="#526f5a"/><path d="M107 68H133V110H107Z" fill="#fcf4df"/>`,`<path d="M65 70Q90 55 140 70L155 40L177 45L185 67L160 75L150 105H80Z" fill="#b58960"/><path d="M83 104L76 133M105 105L111 133M140 104L151 133M156 80L164 127M65 75L45 101"/><circle cx="171" cy="51" r="2" fill="#354c41"/>`,`<path d="M113 66H201L190 103H120Z" fill="#d1ac74"/><circle cx="135" cy="116" r="18" fill="#f5e8ce"/><circle cx="183" cy="116" r="18" fill="#f5e8ce"/><path d="M120 92L71 77M31 69L76 64L86 80L72 97H40Z" fill="#ac8963"/><path d="M43 95L40 126M68 95L73 126M30 71L21 55M36 68L42 53"/>`,`<path d="M110 65H205L195 99H119Z" fill="#d1ac74"/><circle cx="143" cy="115" r="19" fill="#f5e8ce"/><circle cx="187" cy="115" r="19" fill="#f5e8ce"/><circle cx="56" cy="53" r="11" fill="#d6ad80"/><path d="M58 68L70 96L48 125M70 96L91 123M61 76L94 86L121 85"/>`,`<path d="M45 112Q35 136 70 129H199M50 97Q38 118 73 113H199M69 100L78 129M181 98L185 129M62 80H189L195 102H60Z" fill="#c9ab7c"/><path d="M61 95L23 62"/>`,`<path d="M37 98L177 83L209 107L64 127Z" fill="#c2a171"/><path d="M54 98L81 123M78 94L105 119M102 91L129 116M126 88L153 112M149 86L177 110M65 94L186 115M49 114L185 94"/><path d="M19 139Q39 129 59 139T99 139T139 139T179 139T219 139" stroke="#89aeb0"/>`,`<path d="M34 104Q117 120 206 100L180 128H62Z" fill="#b28b59"/><path d="M121 24V111"/><path d="M115 29L62 91H114Z" fill="#fff7df"/><path d="M129 35L184 89H129Z" fill="#e3c38f"/><path d="M20 140Q40 130 60 140T100 140T140 140T180 140T220 140" stroke="#89aeb0"/>`];
@@ -125,6 +125,97 @@ function revealCover(i){if(!Number.isInteger(i)||i<0||i>=names.length)return;cov
 function card(i,fn='explore'){if(fn==='explore'&&!coverRevealed[i])return '<button class="card mystery-card" onclick="revealCover('+i+')" aria-label="'+coverNumbers[i]+'번 카드 공개"><span class="cover-number">'+coverNumbers[i]+'</span></button>';if(fn==='explore'&&!coverNamesRevealed[i])return '<article class="card cover-preview">'+coverArt(i).replace(/alt="[^"]*"/,'alt="교통수단 실루엣"')+'<button class="cover-name-question" onclick="revealCoverName('+i+')" aria-label="교통수단 이름 공개">'+'?'.repeat(Array.from(names[i]).length)+'</button></article>';return revealedCard(i,fn);}
 function revealCoverName(i){if(!Number.isInteger(i)||i<0||i>=names.length)return;coverNamesRevealed[i]=true;render();}
 function revealedCard(i,fn='explore'){return `<button class="card ${fn==='choose'&&selected.includes(i)?'selected':''}" onclick="${fn}(${i})" ${fn==='choose'?`aria-pressed="${selected.includes(i)}"`:''}>${fn==='explore'?coverArt(i):art(i)}<div class="card-title">${names[i]} <span>↗</span></div><div class="tag">${fn==='choose'?'특징 나란히 비교하기':'모습과 이용 방법 탐구하기'}</div></button>`}
+
+const steamSources = [
+ {
+  title:'창밖 풍경이 휙휙 지나갔어요',
+  body:'1876년 김기수는 일본에서 기차를 타 보았습니다. 그는 여행 기록 『일동기유』에서 기차를 [[화륜거]]라고 불렀습니다. 기차가 [[빠르게 달려]] 창밖의 집과 나무를 자세히 보기 어려웠다고 적었습니다.',
+  source:'국사편찬위원회 우리역사넷 · 김기수 『일동기유』를 바탕으로 재서술',
+  url:'https://contents.history.go.kr/front/km/view.do?levelId=km_004_0030_0020_0020',
+  question:'김기수는 왜 창밖의 집과 나무를 자세히 보기 어려웠나요?',
+  options:['집과 나무가 멀어서','기차가 빠르게 달려서','창밖이 어두워서'], answer:1
+ },
+ {
+  title:'기차에 왜 물이 필요했을까요?',
+  body:'증기기관차는 [[석탄 같은 연료]]를 태워 물을 끓였습니다. 이때 생긴 [[수증기]]가 기관차 안의 부품을 밀면 바퀴가 돌았습니다. 바퀴는 땅에 놓인 [[철길]]을 따라 굴렀습니다.',
+  source:'Settle–Carlisle Railway Conservation Area · 증기철도에서 물이 중요한 까닭',
+  url:'https://scrca.aire2eden.uk/importance-water-steam-operated-railways',
+  question:'석탄을 태워 물을 끓인 까닭은 무엇인가요?',
+  options:['바퀴를 식히려고','철길을 씻으려고','바퀴를 움직일 수증기를 만들려고'], answer:2
+ },
+ {
+  title:'기관차를 만든 재료',
+  body:'영국 과학박물관에는 1829년에 만든 증기기관차 로켓호가 남아 있습니다. 박물관의 소장품 설명에는 [[철과 강철]], [[나무와 황동]]이 재료로 적혀 있습니다. 한 대의 기관차에도 여러 재료가 쓰였습니다.',
+  source:'영국 과학박물관 · 로켓호 소장품 정보',
+  url:'https://collection.sciencemuseumgroup.org.uk/objects/co26704/rocket-locomotive-steam-locomotive',
+  question:'로켓호에 쓰인 재료끼리 짝 지은 것은 무엇인가요?',
+  options:['철과 강철','돌과 가죽','종이와 유리'], answer:0
+ },
+ {
+  title:'기차 뒤에는 무엇이 이어졌을까요?',
+  body:'경인선 기차는 [[객차]]에 사람을 태우고 [[화차]]에 짐을 실었습니다. 국가기록원 전시에서는 서울과 인천 사이를 걸어서 약 12시간, 기차로는 [[약 1시간 40분]]에 오갈 수 있었다고 소개합니다.',
+  source:'국가기록원 철도 전시 · 인천광역시교육청 인천교육역사자료',
+  url:'https://theme.archives.go.kr/next/railroad/page2.do',
+  extra:'https://history.ice.go.kr/sub/archive.php?bn=&fn=total_search&md=l&mn=archive&page=1&parSrchTxt=%EA%B8%B0%EA%B4%80%EC%B0%A8&zest_bn=',
+  question:'사람을 태우는 칸과 짐을 싣는 칸은 각각 무엇인가요?',
+  options:['화차와 객차','객차와 화차','기관차와 객차'], answer:1
+ }
+];
+const steamPhoto='https://coimages.sciencemuseumgroup.org.uk/42/249/small_thumbnail_1862_0005__0001_.jpg';
+const steamVideo='https://www.ehistory.go.kr/view/movie?mediadtl=42201&mediagbn=DK&mediaid=30000275&mediasrcgbn=KV';
+let steamPieces=0, steamIndex=0, steamNotes=steamSources.map(()=>new Set()), steamDone=false;
+function openSteamReveal(){
+ steamPieces=0;
+ renderSteamReveal();
+ modal.showModal();
+}
+function renderSteamReveal(){
+ const complete=steamPieces===3;
+ modal.innerHTML='<h2>'+(complete?'증기기차 (증기기관차)':'사진 조각을 열어 확인해요')+'</h2><div class="steam-puzzle" role="img" aria-label="'+(complete?'영국 로켓호 기관차 사진':'사진 조각 '+steamPieces+'개 공개')+'">'+[0,1,2].map(i=>'<div style="'+(i<steamPieces?'background-image:url('+steamPhoto+');background-position:center '+(100-i*50)+'%':'')+'"></div>').join('')+'</div><p class="hint">사진: 영국 과학박물관 소장 로켓호(1829년 제작) · CC BY-NC-SA 4.0</p><div class="controls">'+(complete?'<a class="btn" target="_blank" rel="noopener" href="'+steamVideo+'">달리는 모습 보기 ▶</a><button class="btn primary" onclick="startSteamStudy()">증기기차를 탐구해 봅시다 →</button>':'<button class="btn primary" onclick="steamPieces++;renderSteamReveal();modal.querySelector(\'.primary\').focus()">사진 조각 열기</button>')+'<button class="btn" onclick="modal.close()">닫기</button></div>'+(complete?'<p class="hint">영상: e영상역사관 · 1989년 관광 운행 기록</p>':'');
+}
+function startSteamStudy(){
+ modal.close();
+ steamIndex=0;
+ steamNotes=steamSources.map(()=>new Set());
+ steamDone=false;
+ move('steam');
+ render();
+}
+function renderSteamStudy(focusId){
+ if(steamDone){
+  app.innerHTML='<section class="panel"><h1>증기기차의 특징 정리하기</h1><p>자료에서 모은 단서로 설명해 봅시다.</p>'+['교통로 · 철길','이동 대상 · 사람과 짐','움직이는 힘 · 수증기','만든 재료 · 로켓호에는 철과 강철, 나무, 황동'].map(x=>'<details><summary>'+x.split(' · ')[0]+'</summary><p>'+x.split(' · ')[1]+'</p></details>').join('')+'<h2>생각해 볼 문제</h2><p>물을 채울 곳이 없는 긴 구간을 달린다면 무엇을 준비해야 했을까요?</p><details><summary>생각 단서 보기</summary><p>수증기를 계속 만들려면 물과 연료가 필요했습니다. 석탄을 태울 때는 연기와 그을음도 나왔습니다.</p></details><button class="btn" onclick="move(\'modern\');render()">다른 교통수단 보기</button></section>';
+  return;
+ }
+ const source=steamSources[steamIndex];
+ const body=esc(source.body).replace(/\[\[([^\]]+)\]\]/g,(_,word)=>{
+  const words=[...source.body.matchAll(/\[\[([^\]]+)\]\]/g)].map(m=>m[1]);
+  const i=words.indexOf(word), found=steamNotes[steamIndex].has(i);
+  return '<button id="steamClue'+i+'" class="clue-word '+(found?'found':'')+'" aria-pressed="'+found+'" onclick="collectSteamClue('+i+')">'+word+'</button>';
+ });
+ app.innerHTML='<section class="panel"><h1>증기기차 탐구하기</h1><h2>'+esc(source.title)+' <small>'+ (steamIndex+1)+' / '+steamSources.length+'</small></h2><p class="reading">'+body+'</p><h3>탐구 수첩</h3><p>'+steamSources.flatMap((s,j)=>[...s.body.matchAll(/\[\[([^\]]+)\]\]/g)].filter((_,i)=>steamNotes[j].has(i)).map(m=>esc(m[1]))).join(' · ')+'</p><p class="hint">'+esc(source.source)+' · <a href="'+source.url+'" target="_blank" rel="noopener">원본 출처 ↗</a>'+(source.extra?' · <a href="'+source.extra+'" target="_blank" rel="noopener">경인선 차량 기록 ↗</a>':'')+'</p><div class="controls">'+(steamIndex?'<button class="btn" onclick="steamIndex--;renderSteamStudy()">이전 자료</button>':'')+'<button class="btn primary" '+(steamNotes[steamIndex].size<2?'disabled':'')+' onclick="openSteamQuiz()">단서 '+steamNotes[steamIndex].size+'개 · 자료 확인하기 →</button></div></section>';
+ if(focusId)document.querySelector('#'+focusId)?.focus();
+}
+function collectSteamClue(i){
+ const notes=steamNotes[steamIndex];
+ if(notes.has(i))notes.delete(i);else notes.add(i);
+ renderSteamStudy('steamClue'+i);
+}
+function openSteamQuiz(){
+ const source=steamSources[steamIndex];
+ modal.innerHTML='<section class="gama-popup"><h2>이번 자료에서 알게 된 점</h2><p>'+esc(source.question)+'</p><div class="gama-popup-options">'+source.options.map((x,i)=>'<button class="btn" onclick="checkSteamAnswer('+i+')">'+(i+1)+'. '+esc(x)+'</button>').join('')+'</div><button class="btn" onclick="modal.close()">자료 다시 보기</button></section>';
+ modal.showModal();
+}
+function checkSteamAnswer(i){
+ const source=steamSources[steamIndex];
+ modal.innerHTML=i===source.answer?'<h2>정답입니다.</h2><p>'+esc(source.options[i])+'</p><button class="btn primary" onclick="advanceSteam()">'+(steamIndex===steamSources.length-1?'특징 정리하기':'다음 자료 탐구하기')+' →</button>':'<h2>관련 자료를 다시 탐색해보세요.</h2><button class="btn" onclick="modal.close()">자료 다시 보기</button>';
+ modal.querySelector('button')?.focus();
+}
+function advanceSteam(){
+ modal.close();
+ if(steamIndex===steamSources.length-1)steamDone=true;else steamIndex++;
+ renderSteamStudy();
+ window.scrollTo(0,0);
+}
 
 const modernTopics = [
  ['증기기차','쇠당나귀','화륜거 (불뿜는 수레)','철길'],
@@ -159,6 +250,7 @@ function renderModern(){
 }
 function nextModernClue(i){
  if(modernClues[i]===3){
+  if(i===0){openSteamReveal();return;}
   modal.innerHTML='<h2>'+esc(modernTopics[i][0])+'</h2><button class="btn" onclick="modal.close()">닫기</button>';
   modal.showModal();
   return;
@@ -168,9 +260,10 @@ function nextModernClue(i){
  document.querySelector('#modernClue'+i).focus();
 }
 function render(){
- document.querySelector('#editionOne').setAttribute('aria-current',String(route!=='modern'));
- document.querySelector('#editionTwo').setAttribute('aria-current',String(route==='modern'));
+ document.querySelector('#editionOne').setAttribute('aria-current',String(!['modern','steam'].includes(route)));
+ document.querySelector('#editionTwo').setAttribute('aria-current',String(['modern','steam'].includes(route)));
  if(route==='modern'){renderModern();return;}
+ if(route==='steam'){renderSteamStudy();return;}
  if(route==='home'){app.innerHTML=`<section class="hero"><h1 class="app-title">ROAD ON 생활 모습 변화 탐정단</h1><h2 class="lesson-title">옛날 교통수단 탐구하기</h2><p class="sub">옛날 사람들은 어떻게 이동하고 짐을 옮겼을까요? 여러 자료를 살펴보며 알아봅시다.</p><div class="step"><span>01 교통수단 고르기</span><span>02 자료에서 단서 찾기</span><span>03 서로 비교하기</span></div></section><div class="grid">${[1,2,4,0,3,5].map(i=>visible[i]?card(i):'').join('')}</div>${visible.every(v=>!v)?'<div class="empty">교사용 설정에서 탐구할 교통수단을 선택해 주세요.</div>':''}<div class="bottom"><div><h3>다른 모둠은 무엇을 알아냈을까요?</h3><div class="sub">비슷한 점과 다른 점을 찾아 함께 이야기해요.</div></div><button class="btn primary" onclick="compare()">함께 비교하기 →</button></div><details class="panel"><summary>첫 화면 사진·그림 출처 보기</summary><div class="cover-credits">${names.map((n,i)=>visible[i]?'<section><h3>'+n+'</h3>'+coverCredit(i)+'</section>':'').join('')}</div></details>`}
 if(route==='intro')renderTransportIntro();if(route==='explore')renderExplore();
 if(route==='compare')renderCompare();if(route==='teacher')renderTeacher()}

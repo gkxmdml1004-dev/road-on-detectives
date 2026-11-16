@@ -1,5 +1,8 @@
 const railRecord = 'https://contents.history.go.kr/mobile/km/view.do?levelId=km_016_0060_0010_0010';
 const railPhoto = 'https://contents.history.go.kr/data/img/km/km_016/km_016_224_01.jpg';
+const railHeroPhoto = 'assets/steam-mika-161.jpg';
+const railHeroSource = 'https://commons.wikimedia.org/wiki/File:Korean_steam_locomotive_no._161.JPG';
+const railHeroCredit = () => railLink(railHeroSource,'사진 · Pluskwa, 철도박물관 미카 3-161호 전시 사진 · 2014년')+' · '+railLink('https://creativecommons.org/licenses/by-sa/3.0/','CC BY-SA 3.0');
 const seatRecord = 'https://contents.history.go.kr/mobile/km/view.do?levelId=km_022_0040_0010_0030';
 const railMuseum = steamSources[2].url;
 const railLink = (url, label) => `<a href="${url}" target="_blank" rel="noopener">${esc(label)} ↗</a>`;
@@ -27,11 +30,18 @@ steamSources.push({
   answer: 1
 });
 
+function historicRailPreview(url, label) {
+ return '<figure class="rail-archive-preview"><img src="'+url+'" alt="'+esc(label)+'"><figcaption>우리역사넷 공개본 · 가로 100px</figcaption></figure>';
+}
+function revealRailWord(button, index) {
+ button.textContent = ['석탄','물','수증기'][index];
+ button.setAttribute('aria-pressed','true');
+}
 const railMaterials = [
-  {type:'사진과 글', task:'사진을 확대해 바퀴가 놓인 곳을 찾아보세요. 사진 설명에서 기관차에 무엇을 채우는지 확인하고, 물이 왜 필요한지 먼저 짐작해 봅시다.', visual:()=>railImage(railPhoto,'1899년 경인선 기관차')+railLink(railRecord,'우리역사넷 사진 설명'), terms:{철길:'기차 바퀴가 달리는 길', 수증기:'물이 기체로 바뀐 것', 연료:'태워서 열을 얻는 물질'}, groups:[3,4,4,2]},
+  {type:'사진과 글', task:'위의 큰 사진에서 바퀴를 찾아보세요. 왼쪽 옛 사진의 출처 설명을 열어 기관차에 무엇을 채우는지 확인하고, 왜 필요했는지 짐작해 봅시다.', visual:()=>historicRailPreview(railPhoto,'1899년 경인선 기관차')+railLink(railRecord,'우리역사넷 사진 설명'), terms:{철길:'기차 바퀴가 달리는 길', 수증기:'물이 기체로 바뀐 것', 연료:'태워서 열을 얻는 물질'}, groups:[3,4,4,2]},
   {type:'여행 기록', task:'기차 안에서 느낀 점과 창밖에서 본 모습을 각각 찾아보세요.', visual:()=>'<blockquote>우레와 번개처럼 달리고</blockquote><p>김기수 『일동기유』 · 우리역사넷 수록 번역 일부</p>', terms:{화륜거:'옛 기록에서 증기기차를 가리킨 말'}, groups:[1,0,4,4]},
   {type:'유물', task:'먼저 로켓호의 모양을 관찰하고, 박물관의 재료 목록을 읽어 무엇으로 만들었는지 확인해요.', visual:()=>railLink(railMuseum,'영국 과학박물관에서 로켓호 사진과 재료 보기'), terms:{황동:'구리와 아연을 섞어 만든 금속', 강철:'철을 바탕으로 만든 단단한 금속'}, groups:[3,3]},
-  {type:'사진과 기록', task:'1등 객차와 3등 객차 사진의 좌석과 통로를 비교하세요. 이어 기록에서 객차와 화차가 각각 몇 칸 있었는지 찾아보세요.', visual:()=>[2,3].map((n,i)=>railImage('https://contents.history.go.kr/data/img/km/km_022/km_022_072_0'+n+'.jpg',i?'3등 객차':'1등 객차')+`<p>${i?'3등':'1등'} 객차</p>`).join('')+railLink(seatRecord,'우리역사넷 객차 사진과 차량 기록'), terms:{객차:'사람을 태우는 기차 칸', 화차:'짐을 싣는 기차 칸', 량:'기차의 칸 수를 세는 단위'}, groups:[3,3,3,3]},
+  {type:'사진과 기록', task:'두 객차 사진에서 보이는 내부 모습을 비교해 보세요. 이어 기록에서 객차와 화차가 각각 몇 칸 있었는지 찾아보세요.', visual:()=>[2,3].map((n,i)=>historicRailPreview('https://contents.history.go.kr/data/img/km/km_022/km_022_072_0'+n+'.jpg',i?'3등 객차':'1등 객차')+`<p>${i?'3등':'1등'} 객차</p>`).join('')+railLink(seatRecord,'우리역사넷 객차 사진과 차량 기록'), terms:{객차:'사람을 태우는 기차 칸', 화차:'짐을 싣는 기차 칸', 량:'기차의 칸 수를 세는 단위'}, groups:[3,3,3,3]},
   {type:'영상', task:'달리는 기관차와 도시락을 먹는 사람들이 나오는 장면을 각각 찾아보세요.', visual:()=>railLink(steamVideo,'운행 기록 영상 보기 · 48초'), terms:{관광:'다른 곳을 찾아가 구경하는 일'}, groups:[1,5]}
 ];
 const railPocketLabels = ['누가','언제','어디서','무엇을','어떻게','왜'];
@@ -41,10 +51,10 @@ renderSteamReveal = function () {
   const complete = steamPieces === 3;
   modal.innerHTML = `<section class="rail-reveal">
     <div class="rail-dialog-head"><h2>${complete?'증기기차':'어떤 교통수단일까요?'}</h2><button class="btn" onclick="modal.close()">닫기 ×</button></div>
-    <div class="rail-picture"><img src="${railPhoto}" alt="${complete?'1899년 경인선 기관차':'공개 중인 사진'}">
+    <div class="rail-picture"><img src="${railHeroPhoto}" alt="${complete?'철도박물관에 전시된 미카형 증기기관차':'공개 중인 사진'}">
     ${[0,1,2].map(i=>i<steamPieces?'':`<span style="bottom:${i*100/3}%" aria-hidden="true"></span>`).join('')}</div>
     <div class="controls">${complete?railLink(steamVideo,'달리는 모습 보기 · 1989년 기록 48초')+'<button class="btn primary" onclick="showRailIntro()">증기기차를 탐구해 봅시다 →</button>':`<button class="btn primary" onclick="steamPieces++;renderSteamReveal();modal.querySelector('.primary').focus()">사진 조각 열기 · ${steamPieces}/3</button>`}</div>
-    ${complete?`<p class="hint">${railLink(railRecord,'사진 · 우리역사넷 「경인선 기관차」 · 1899년')}</p>`:''}
+    ${complete?`<p class="hint">${railHeroCredit()}</p>`:''}
   </section>`;
 };
 
@@ -54,7 +64,7 @@ function showRailIntro() {
   render();
 }
 function renderRailIntro() {
-  app.innerHTML = `<section class="transport-intro"><div class="intro-photo">${railImage(railPhoto,'1899년 경인선 기관차')}<p class="intro-credit">${railLink(railRecord,'사진 · 우리역사넷 「경인선 기관차」 · 1899년')}</p></div><div class="intro-copy"><h1>증기기차</h1><p class="intro-definition">증기기관차는 물을 끓여 만든 <strong>수증기의 힘</strong>으로 움직이며 뒤에 연결한 기차 칸을 끕니다.</p><p class="intro-credit">${railLink(steamSources[0].url,'뜻 출처 · 증기철도에서 물이 중요한 까닭')}</p><button class="btn primary intro-start" onclick="startRailStudy()">자료 탐구 시작하기 →</button></div></section>`;
+  app.innerHTML = `<section class="transport-intro"><div class="intro-photo">${railImage(railHeroPhoto,'철도박물관에 전시된 미카형 증기기관차')}<p class="intro-credit">${railLink(railRecord,'사진 · 우리역사넷 「경인선 기관차」 · 1899년')}</p></div><div class="intro-copy"><h1>증기기차</h1><p class="intro-definition">증기기관차는 <button class="rail-word" aria-pressed="false" onclick="revealRailWord(this,0)">ㅅㅌ</button>으로 <button class="rail-word" aria-pressed="false" onclick="revealRailWord(this,1)">ㅁ</button>을 끓여 만든 <button class="rail-word" aria-pressed="false" onclick="revealRailWord(this,2)">ㅅㅈㄱ</button>의 힘으로 움직이며 뒤에 연결한 기차 칸을 끌었습니다.</p><p class="intro-credit">${railLink(steamSources[0].url,'뜻 출처 · 증기철도에서 물이 중요한 까닭')}</p><button class="btn primary intro-start" onclick="startRailStudy()">자료 탐구 시작하기 →</button></div></section>`;
 }
 function startRailStudy() {
   railUnlocked = 0;
@@ -91,7 +101,7 @@ renderSteamStudy = function (focusId) {
   const glossary = Object.entries(material.terms).map(([word,meaning])=>`<details><summary>${word}</summary><p>${meaning}</p></details>`).join('');
   const tabs = steamSources.map((item,i)=>`<button class="btn ${i===steamIndex?'primary':''}" ${i>railUnlocked?'disabled':''} onclick="selectRailSource(${i})"><small>${railMaterials[i].type}</small> ${esc(item.title)}</button>`).join('');
   app.innerHTML = `<h1>증기기차</h1>
-    <section class="panel gama-top"><div>${railImage(railPhoto,'1899년 경인선 기관차')}<p class="hint">${railLink(railRecord,'사진 · 우리역사넷, 1899년')}</p></div><div class="gama-notebook"><h2>탐구 수첩</h2><div class="rail-pockets" aria-live="polite">${pockets}</div></div></section>
+    <section class="panel gama-top"><div>${railImage(railHeroPhoto,'철도박물관에 전시된 미카형 증기기관차')}<p class="hint">${railHeroCredit()}</p></div><div class="gama-notebook"><h2>탐구 수첩</h2><div class="rail-pockets" aria-live="polite">${pockets}</div></div></section>
     ${inquiryLensGuide()}<div class="rail-tabs">${tabs}</div>
     <section class="rail-reading"><div class="gama-source-heading"><h2>${esc(source.title)}</h2><span>${steamIndex+1} / ${steamSources.length}</span></div>
     <div class="gama-document-body"><div class="gama-source-visual">${material.visual()}<section class="gama-glossary"><h3>어려운 낱말 모음집</h3><div class="rail-terms">${glossary}</div></section></div>

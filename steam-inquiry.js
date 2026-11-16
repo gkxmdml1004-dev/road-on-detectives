@@ -32,8 +32,8 @@ function revealRailWord(button, index) {
  button.setAttribute('aria-pressed','true');
 }
 const railMaterials = [
-  {type:'문헌', task:'번역문에서 김기수가 기차를 가리킨 말과 창밖 풍경을 묘사한 부분을 찾아보세요.', visual:()=>railLink(steamSources[0].url,'김기수 『일동기유』 번역문 열기'), terms:{화륜거:'김기수가 기록에서 기차를 가리킨 말'}, groups:[3,4]},
-  {type:'사진과 글', task:'사진을 확대해 큰 바퀴 옆에 길게 이어진 막대를 찾아보세요. 기관차 안에서 부품이 앞뒤로 움직이면, 이 막대는 바퀴를 어떻게 움직이게 할까요?', visual:()=>railImage(railHeroPhoto,'미카형 증기기관차의 바퀴와 연결 막대')+'<p>'+railHeroCredit()+'</p><p>'+railLink(railPasi,'국가유산청 · 파시형 증기기관차 23호')+'</p><p>'+railLink('https://www.youtube.com/watch?v=ghfYcIJDOgU','증기기관차 작동 원리 영상')+'</p>', terms:{철길:'기차 바퀴가 달리는 길', 수증기:'물이 기체로 바뀐 것', 연료:'태워서 열을 얻는 물질'}, groups:[3,4,2]},
+  {type:'문헌', task:'번역문에서 김기수가 기차를 가리킨 말과 창밖 풍경을 묘사한 부분을 찾아보세요.', visual:()=>railLink(steamSources[0].url,'김기수 『일동기유』 번역문 열기'), terms:{화륜거:'김기수가 기록에서 기차를 가리킨 말', 쇠당나귀:'쇠로 된 기차를 당나귀에 빗댄 표현'}, groups:[3,4,3]},
+  {type:'사진과 글', task:'사진을 확대해 큰 바퀴들의 옆면을 보세요. 어느 바퀴들이 같은 막대로 이어져 있나요? 한 바퀴가 돌 때 막대로 이어진 바퀴는 어떻게 움직일까요?', visual:()=>railImage(railHeroPhoto,'미카형 증기기관차의 바퀴와 연결 막대')+'<p>'+railHeroCredit()+'</p><p>'+railLink(railPasi,'국가유산청 · 파시형 증기기관차 23호')+'</p><p>'+railLink('https://www.youtube.com/watch?v=ghfYcIJDOgU','증기기관차 작동 원리 영상')+'</p>', terms:{철길:'기차 바퀴가 달리는 길', 수증기:'물이 기체로 바뀐 것', 연료:'태워서 열을 얻는 물질'}, groups:[3,4,2]},
   {type:'유물', task:'먼저 로켓호의 모양을 관찰하고, 박물관의 재료 목록을 읽어 무엇으로 만들었는지 확인해요.', visual:()=>railLink(railMuseum,'영국 과학박물관에서 로켓호 사진과 재료 보기'), terms:{황동:'구리와 아연을 섞어 만든 금속', 강철:'철을 바탕으로 만든 단단한 금속'}, groups:[3,3]},
   {type:'사진과 기록', task:'경인선 차량 기록에서 객차와 화차의 수를 비교해 보세요. 어느 종류의 칸을 더 많이 마련했나요? 그 까닭을 친구와 이야기해 보세요.', visual:()=>'<dl class="clue-pocket"><dt>증기기관차</dt><dd>4대</dd><dt>객차</dt><dd>6량</dd><dt>화차</dt><dd>28량</dd></dl>'+railLink(seatRecord,'우리역사넷 경인선 차량 기록')+'<p>'+railLink('https://www.korea.kr/news/policyNewsView.do?newsId=148873973','1899년 제물포~노량진 · 약 1시간 40분')+'</p>', terms:{객차:'사람을 태우는 기차 칸', 화차:'짐을 싣는 기차 칸', 량:'기차의 칸 수를 세는 단위'}, groups:[3,3,1]},
 ];
@@ -98,7 +98,7 @@ renderSteamStudy = function (focusId) {
     ${inquiryLensGuide()}<div class="rail-tabs">${tabs}</div>
     <section class="rail-reading"><div class="gama-source-heading"><h2>${esc(source.title)}</h2><span>${steamIndex+1} / ${steamSources.length}</span></div>
     <div class="gama-document-body"><div class="gama-source-visual">${material.visual()}<section class="gama-glossary"><h3>어려운 낱말 모음집</h3><div class="rail-terms">${glossary}</div></section></div>
-    <div class="reading"><p class="rail-observation">${material.task}</p>${body}</div></div>
+    <div class="reading"><p class="rail-observation">${material.task}</p>${body}${steamIndex===0?`<h3>쇠당나귀는 어떤 뜻일까요?</h3><p>당나귀는 등에 사람이나 짐을 싣고 다녔어요. 쇠로 만든 기차는 뒤에 칸을 달아 사람과 짐을 옮겼어요. 두 탈것이 하는 일에서 어떤 공통점이 보이나요?</p><p class="hint">‘쇠당나귀’는 국가기록원 전시에 소개된 표현입니다. 이 말을 쓴 당시 원문은 아직 확인하지 못했습니다.</p>`:''}${steamIndex===1?`<details><summary>바퀴를 막대로 연결한 까닭</summary><p>증기가 피스톤을 앞뒤로 밀면, 막대가 그 움직임을 바퀴에 전달해요. 큰 바퀴들을 잇는 막대는 여러 바퀴가 함께 돌게 해서 철길을 밀며 나아갈 수 있게 해요.</p></details><h3>영상으로 알아보기 · 증기는 무엇일까요?</h3><p>영상을 보면서 물을 데우면 어떤 변화가 생기는지 찾아보세요. 기차 안에서는 그 변화로 어떻게 바퀴를 움직였을까요?</p><p>${railLink('https://youtu.be/9XmvGHQr194','영상 처음부터 보기')}</p><details><summary>찾은 단서 확인하기</summary><p>물이 끓으면 기체 상태인 수증기가 생겨요. 보일러에서 만들어진 증기의 압력은 피스톤을 움직일 수 있어요.</p></details>`:''}</div></div>
     <div class="gama-source-footer">${esc(source.source)} · ${railLink(source.url,'원본 출처')}${source.extra?' · '+railLink(source.extra,'관련 원자료'):''}${steamIndex===0?' · '+railLink('https://contents.history.go.kr/front/km/view.do?levelId=km_004_0030_0020_0020','김기수 『일동기유』 번역문')+' · '+railLink('https://theme.archives.go.kr/next/railroad/page2.do','국가기록원 전시 해설'):''}</div>
     <div class="controls"><button class="btn primary" ${steamNotes[steamIndex].size<2?'disabled':''} onclick="openSteamQuiz()">단서 ${steamNotes[steamIndex].size}개 · 자료 확인하기 →</button></div></section>`;
   if (focusId) document.querySelector('#'+focusId)?.focus();

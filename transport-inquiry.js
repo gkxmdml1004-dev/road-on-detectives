@@ -69,7 +69,7 @@ function renderTransportSource(source,notes,i,step) {
   return `<section class="rail-reading"><div class="gama-source-heading"><h2>${title}</h2><span>${step+1} / 3</span></div>
     <p>${railLink(url,type==='영상'?'영상 보기':'원자료 크게 보기')} · ${credit}</p><p class="rail-observation">${question}</p>
     <details><summary>자료에서 찾은 단서 확인하기</summary><div class="rail-terms">${words.split('|').map((word,j)=>`<button id="topicWord${j}" class="clue-word essential-clue ${notes.has(word)?'found':''}" aria-pressed="${notes.has(word)}" onclick="saveTransportWord(${i},${step},${j})">${word}</button>`).join('')}</div></details>
-    <div class="controls"><button class="btn primary" onclick="renderTransportStudy(${i},${step+1},'transportTab${step+1}')">${step===2?'네 관점으로 정리하기':'다음 자료 →'}</button></div></section>`;
+    ${i===2&&step===1?`<h3>영상으로 살펴보는 자동차의 역사</h3><p>말이 끄는 수레와 벤츠 자동차를 보면서, 바퀴를 움직이는 힘이 어떻게 달라졌는지 찾아보세요.</p><p>${railLink("https://youtu.be/9N9ru8eYzpQ","YTN 사이언스 · 현대인의 필수품 자동차의 역사")}</p>`:''}<div class="controls"><button class="btn primary" onclick="renderTransportStudy(${i},${step+1},'transportTab${step+1}')">${step===2?'네 관점으로 정리하기':'다음 자료 →'}</button></div></section>`;
 }
 function saveTransportWord(i,step,j) {
   transportNotes[i].add(newTransport[i].sources[step][5].split('|')[j]);

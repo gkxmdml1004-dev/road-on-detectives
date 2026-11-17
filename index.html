@@ -225,12 +225,12 @@ const modernTopics = [
 ];
 let modernClues=[-1,-1,-1,-1]; let modernTeacher=false;
 function openModernPin(){
- modal.innerHTML='<section class="teacher-pin-dialog modern-pin-dialog"><h2>과학 기술이 발달하면서 생겨난 교통수단</h2><form onsubmit="event.preventDefault();checkModernPin()"><label for="modernPin">비밀번호</label><input id="modernPin" type="password" maxlength="20" autocomplete="off" aria-describedby="modernPinError" autofocus><p id="modernPinError" role="alert"></p><div class="controls"><button type="button" class="btn" onclick="modal.close()">취소</button><button type="submit" class="btn primary">들어가기</button></div></form></section>';
+ modal.innerHTML='<section class="teacher-pin-dialog modern-pin-dialog"><h2>과학 기술이 발달하면서 생겨난 교통수단</h2><form onsubmit="event.preventDefault();checkModernPin()"><label for="modernPin">비밀번호</label><input id="modernPin" type="text" inputmode="text" maxlength="20" autocomplete="off" autocapitalize="none" spellcheck="false" aria-describedby="modernPinError" autofocus><p id="modernPinError" role="alert"></p><div class="controls"><button type="button" class="btn" onclick="modal.close()">취소</button><button type="submit" class="btn primary">들어가기</button></div></form></section>';
  modal.showModal();
 }
 function checkModernPin(){
  const input=document.querySelector('#modernPin');
- const code=input.value.trim();
+ const code=input.value.trim().normalize("NFC");
  if(code!=='22'&&code!=='쇠당나귀'){
   document.querySelector('#modernPinError').textContent='비밀번호가 맞지 않습니다.';
   input.value='';

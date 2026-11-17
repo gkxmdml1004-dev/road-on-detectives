@@ -39,7 +39,7 @@ function renderTransportReveal(i) {
   const name = modernTopics[i][0];
   const complete = transportPiece === 3;
   modal.innerHTML = `<div class="rail-dialog-head"><h2>${complete?name:'어떤 교통수단일까요?'}</h2><button class="btn" onclick="modal.close()">닫기 ×</button></div>
-    <div class="rail-picture"><img src="assets/${topic.photo}" alt="${complete?name:'공개 중인 사진'}">${[0,1,2].map(j=>j<transportPiece?'':`<span style="bottom:${j*100/3}%" aria-hidden="true"></span>`).join('')}</div>
+    <div class="rail-picture"><img src="assets/${topic.photo}" alt="${complete?name:'공개 중인 사진'}">${[0,1,2].map(j=>j<transportPiece?'':`<span style="top:${j*100/3}%" aria-hidden="true"></span>`).join('')}</div>
     ${complete?'<p class="hint">사진 · 수업용 제공 자료 99쪽</p>':''}
     <button class="btn primary" onclick="${complete?`showTransportIntro(${i})`:`transportPiece++;renderTransportReveal(${i});modal.querySelector('.primary').focus()`}">${complete?name+' 탐구하기 →':'사진 조각 열기 · '+transportPiece+'/3'}</button>`;
 }

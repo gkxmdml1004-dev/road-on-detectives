@@ -48,7 +48,7 @@ function showTransportIntro(i) {
   move('modernTopic'+i);
   render();
 }
-function renderTransportIntro(i) {
+function renderModernTransportIntro(i) {
   const topic = newTransport[i];
   app.innerHTML = `<section class="transport-intro"><div class="intro-photo">${railImage('assets/'+topic.photo,modernTopics[i][0])}<p class="intro-credit">사진 · 수업용 제공 자료 99쪽</p></div><div class="intro-copy"><h1>${modernTopics[i][0]}</h1><p class="intro-definition">${topic.intro}</p><button class="btn primary intro-start" onclick="move('modernStudy'+${i});render()">자료 탐구 시작하기 →</button></div></section>`;
 }
